@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
     {
         GameObject Bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
         Rigidbody rb = Bullet.GetComponent<Rigidbody>();
-        if(rb != null) rb.linearVelocity = shootPoint.forward * speed;
+        if(rb != null) rb.linearVelocity = -shootPoint.forward * speed;
         Destroy(Bullet, bulletLifeTime);
     }
     void OnTriggerEnter(Collider other)

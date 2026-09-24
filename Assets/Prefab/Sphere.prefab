@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 932947795419778211}
   - component: {fileID: 5045160420168247762}
   - component: {fileID: 7595561534752988323}
+  - component: {fileID: -2238717919341813209}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -135,8 +136,25 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2238717919341813209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721652212583304552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928e732fa2339ed43a79821e8cd07862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  bulletPrefab: {fileID: 0}
+  shootPoint: {fileID: 0}
+  bulletSpeed: 10
+  bulletLifeTime: 3
+  damage: 1
