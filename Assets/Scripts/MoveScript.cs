@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class MoveScript : MonoBehaviour
 {
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private float bulletLifeTime = 3f;
+    [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] float moveSpeed = 1.0f;
     [SerializeField] float jumpPower = 1.0f;
     [SerializeField] int damage = 1;
+    [SerializeField] MainHealth mainHealth;
 
     private bool isGrounded = true;
     private int justJumpTime = 0;
@@ -25,6 +30,10 @@ public class MoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot(bulletSpeed);
+        }
         if (startJump)
         {
             justJumpTime++;
@@ -55,7 +64,7 @@ public class MoveScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-                if(0 <= justJumpTime && justJumpTime <= 20)
+                if(0 <= justJumpTime && justJumpTime <= 40)
                 {
                     justJump = true;
                 }
@@ -67,7 +76,7 @@ public class MoveScript : MonoBehaviour
         switch (other.tag)
         {
             case "Enemy":
-                Debug.Log("敵に弾が命中");
+                mainHealth.currentHp = 0;
                 break;
         }
     }
@@ -83,5 +92,12 @@ public class MoveScript : MonoBehaviour
         isGrounded = false;
         startJump = false;
         justJumpTime = 0;
+    }
+    void Shoot(float speed)
+    {
+        GameObject Bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+        Rigidbody rb = Bullet.GetComponent<Rigidbody>();
+        if (rb != null) rb.linearVelocity = -shootPoint.forward * speed;
+        Destroy(Bullet, bulletLifeTime);
     }
 }

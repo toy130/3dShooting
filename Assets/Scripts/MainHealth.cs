@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyHealth: MonoBehaviour
+public class MainHealth : MonoBehaviour
 {
     [SerializeField] int maxHp = 3;
     public int currentHp = 0;
@@ -15,7 +15,7 @@ public class EnemyHealth: MonoBehaviour
         currentHp -= amount;
         Debug.Log(gameObject.name + " のHP: " + currentHp);
 
-        if(currentHp <= 0)
+        if (currentHp <= 0)
         {
             Die();
         }
@@ -28,6 +28,6 @@ public class EnemyHealth: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
